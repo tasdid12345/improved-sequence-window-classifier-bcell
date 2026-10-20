@@ -23,7 +23,7 @@ Results: results are written to `results.json` (and `figures/macro_f1.png`).
 
 ## Results (latest run)
 
-On the UCI splice-junction stand-in dataset (not epitope data), a class-balanced LightGBM with one-hot window features reached 0.960 macro-F1 on the held-out test set versus 0.953 for a standard random forest on one-hot window features, a small gain from a single split.
+On the public UCI splice-junction stand-in dataset (not epitope data), a class-balanced LightGBM reached 0.960 macro-F1 on the held-out test set versus 0.953 for a standard random forest on one-hot window features, a small gain from a single split.
 
 | Metric | Value |
 |---|---|
