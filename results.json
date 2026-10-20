@@ -1,0 +1,33 @@
+{
+  "question": "Can a class-balanced LightGBM with one-hot window features beat a standard random forest on a public residue-window sequence classification task that stands in for linear B-cell epitope prediction?",
+  "method": "Single stratified 75/25 split (seed 42). Baseline: 300-tree random forest on one-hot window features. Improved: class-balanced LightGBM with 3-fold CV grid over learning rate and leaves, plus isotonic calibration on an inner split. Test set used once; seeds 42-44.",
+  "dataset": {
+    "name": "UCI Molecular Biology Splice-junction Gene Sequences (stand-in, not epitope data)",
+    "source_url": "https://archive.ics.uci.edu/dataset/69/molecular+biology+splice+junction+gene+sequences",
+    "n_rows": 3190,
+    "n_train": 2392,
+    "n_test": 798,
+    "same_as_paper": false,
+    "baseline_is_papers_method": false
+  },
+  "metric_name": "macro-F1 (test)",
+  "higher_is_better": true,
+  "baseline": "Standard random forest (300 trees) on one-hot encoded window positions, raw class probabilities.",
+  "improved": "Class-balanced LightGBM on the same one-hot features, small CV grid over learning rate and num_leaves, isotonic calibration fitted on a 20% inner split of the training data.",
+  "metrics": {
+    "baseline_score": 0.9530516308507185,
+    "improved_score": 0.9596266299715487,
+    "improvement": 0.0065749991208301495,
+    "baseline_score_std": 0.0011818077671941073,
+    "improved_score_std": 0.0,
+    "baseline_accuracy": 0.960735171261487,
+    "improved_accuracy": 0.9661654135338346,
+    "baseline_brier": 0.12492667095092701,
+    "improved_brier": 0.06689056384041044,
+    "brier_improvement": 0.05803610711051657,
+    "cv_best_macro_f1": 0.956872856547048,
+    "best_learning_rate": 0.1,
+    "best_num_leaves": 15.0
+  },
+  "notes": "Stand-in task: DNA splice-junction windows, not linear B-cell epitopes; results say nothing about epitope prediction. Single split, so variance across splits is not measured. The improved model's final fit uses 80% of training rows (the rest calibrates isotonic). The baseline uses all training rows. Seeds vary model randomness only. The ucimlrepo internal HTTP calls cannot take a custom timeout; only the pre-flight request does."
+}
