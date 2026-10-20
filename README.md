@@ -21,6 +21,30 @@ python analysis.py
 
 Results: results are written to `results.json` (and `figures/macro_f1.png`).
 
+## Results (latest run)
+
+On the UCI splice-junction stand-in dataset (not epitope data), a class-balanced LightGBM with one-hot window features reached 0.960 macro-F1 on the held-out test set versus 0.953 for a standard random forest on one-hot window features, a small gain from a single split.
+
+| Metric | Value |
+|---|---|
+| baseline_score | 0.9531 |
+| improved_score | 0.9596 |
+| improvement | 0.006575 |
+| baseline_score_std | 0.001182 |
+| improved_score_std | 0 |
+| baseline_accuracy | 0.9607 |
+| improved_accuracy | 0.9662 |
+| baseline_brier | 0.1249 |
+| improved_brier | 0.06689 |
+| brier_improvement | 0.05804 |
+| cv_best_macro_f1 | 0.9569 |
+| best_learning_rate | 0.1 |
+| best_num_leaves | 15 |
+
+Run on 2026-10-20. Full output: [results.json](results.json) · [run.log](run.log)
+
+Notes: Stand-in task: DNA splice-junction windows, not linear B-cell epitopes; results say nothing about epitope prediction. Single split, so variance across splits is not measured. The improved model's final fit uses 80% of training rows (the rest calibrates isotonic). The baseline uses all training rows. Seeds vary model randomness only. The ucimlrepo internal HTTP calls cannot take a custom timeout; only the pre-flight request does.
+
 ## Reference
 
 This project is motivated by the following paper:
